@@ -71,7 +71,7 @@ app.get("/items", function(req, res) {
             api: "GPI",
             version: "1.0.0",
             requestStatus: "OK" ,
-            data: r || {}
+            data: result || {}
         }
         res.send(rp);
         console.log("Response sent.");    

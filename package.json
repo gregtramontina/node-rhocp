@@ -1,0 +1,30 @@
+{
+  "name": "rhocp",
+  "version": "1.0.0",
+  "description": "My tests with nodejs and OpenShift",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregtramontina/node-rhocp.git"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "openshift",
+    "test"
+  ],
+  "author": "Gregorio Tramontina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gregtramontina/node-rhocp/issues"
+  },
+  "homepage": "https://github.com/gregtramontina/node-rhocp#readme"
+}
