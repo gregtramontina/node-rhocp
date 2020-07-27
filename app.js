@@ -1,5 +1,33 @@
+const mysql = require("mysql");
 const express = require('express');
 var app = express();
+
+//Startup
+if (!(process.env.DB_USER && process.env.DB_PWD && process.env.DB_NAME && process.env.DB_HOST)) {
+    throw "These 3 parameters must be specified as environmet variables: DB_USER, DB_PWD, DB_NAME, and DB_HOST";
+}
+
+let dbProperties = {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PWD,
+    database: process.env.DB_NAME
+};
+
+class DbMediator {
+    static getItems(callback) {
+        let conn = mysql.createConnection(dbProperties);
+        conn.connect(function (err) {
+            if (err) throw err;
+            conn.query("SELECT * FROM items;", function (err, result, fields) {
+                if (err) throw err;
+                if (callback) {
+                    callback(result);
+                }
+            });
+        });
+    }
+}
 
 app.get("/", function(req, res) {
     console.log("Route / reached.")
@@ -34,6 +62,20 @@ app.get("/ready", function(req, res) {
         }
     );
     console.log("Response sent.");
+});
+
+app.get("/items", function(req, res) {
+    console.log("Route /items reached.");
+    let r = DbMediator.getItems(function (result) {
+        let rp = {
+            api: "GPI",
+            version: "1.0.0",
+            requestStatus: "OK" ,
+            data: r || {}
+        }
+        res.send(rp);
+        console.log("Response sent.");    
+    });
 });
 
 app.listen(12944, function() {
