@@ -15,6 +15,8 @@ LABEL name="My nodejs test app" \
 WORKDIR /usr/app/
 COPY *.js *.json ./
 
+USER 0
+
 RUN yum install -y --disableplugin=subscription-manager nodejs && \
     yum clean all && \
     chgrp -R 0 /usr/app/ && \
