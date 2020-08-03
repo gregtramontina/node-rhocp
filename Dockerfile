@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi:8.0
+FROM registry.access.redhat.com/ubi8/ubi:latest
 
 LABEL name="My nodejs test app" \
       version="1.0.0" \
@@ -15,10 +15,10 @@ LABEL name="My nodejs test app" \
 WORKDIR /usr/app/
 COPY *.js *.json ./
 
-USER 0
-
 RUN yum install -y --disableplugin=subscription-manager nodejs && \
     yum clean all && \
+    chgrp -R 0 /usr/app/ && \
+    chmod -R g=u /usr/app/ && \
     npm install
 
 EXPOSE 12944
