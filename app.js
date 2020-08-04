@@ -79,7 +79,7 @@ app.get("/items", function(req, res) {
 });
 
 app.listen(12944, function() {
-    console.log("Listening on port 12944...");
+    console.log("Listening now on port 12944...");
 });
 
 
