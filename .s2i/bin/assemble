@@ -1,0 +1,15 @@
+#!/bin/sh -e
+
+echo "### This is my custom script"
+
+#Calls the original script
+/usr/libexec/s2i/assemble
+
+rc=$?
+
+if [ $rc -eq 0 ]; then
+    echo "My custo script ran fine"
+else
+    echo "NOT FINE!!"
+fi
+
