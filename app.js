@@ -3,15 +3,15 @@ const express = require('express');
 var app = express();
 
 //Startup
-if (!(process.env.DB_USER && process.env.DB_PWD && process.env.DB_NAME && process.env.DB_HOST)) {
+if (!(process.env.DB_USER && process.env.DB_PASSWORD && process.env.DB_DATABASE && process.env.DB_HOST)) {
     throw "These 3 parameters must be specified as environmet variables: DB_USER, DB_PWD, DB_NAME, and DB_HOST";
 }
 
 let dbProperties = {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
-    password: process.env.DB_PWD,
-    database: process.env.DB_NAME
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE
 };
 
 class DbMediator {
