@@ -20,7 +20,7 @@ USER 0
 RUN yum install -y --disableplugin=subscription-manager nodejs && \
     yum clean all && \
     chgrp -R 0 /usr/app/ && \
-    chmod -R g=u /usr/app/ && \
+    chmod -R g+rwx /usr/app/ && \
     npm install
 
 EXPOSE 12944
